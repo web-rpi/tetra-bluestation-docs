@@ -142,6 +142,8 @@ Optional Cell Parameters (Broadcast & Mobility)
 | `ts_reserved_frames` | `0` | Integer | Reserved frames for timeslot allocation. |
 | `u_plane_dtx` | `false` | `true`, `false` | Enables user-plane DTX. |
 | `frame_18_ext` | `false` | `true`, `false` | Frame 18 extension support. |
+| `local_ssi_ranges` | [[0, 91]] | List of ranges | SSI ranges kept local to the cell. Overrides brew routing; matching incoming brew traffic is dropped. End value is exclusive. |
+
 
 
 # [brew]: Brew (TETRA Homebrew Protocol)
@@ -156,3 +158,5 @@ Optional Cell Parameters (Broadcast & Mobility)
 | `password` | _none_ | String | HTTP Digest auth password (required when enabled). For TPC: hotspot password |
 | `issi` | _none_ | Integer | ISSI used to register with the server. For TPC: DMRID |
 | `reconnect_delay_secs` | `15` | Integer (seconds) | Delay before reconnect attempts after disconnect. |
+| `jitter_initial_latency_frames` | `0` | Integer | Adds fixed startup latency (in frames) for inbound Brew jitter buffering. Adaptive buffering remains enabled. |
+| `whitelisted_ssis` | [91] | List of SSIs | Limits Brew transmission to listed SSIs only. If unset, all non-local SSIs are allowed over Brew. |
