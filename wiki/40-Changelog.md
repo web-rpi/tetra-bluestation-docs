@@ -1,5 +1,26 @@
 # Changelog
 
+## [0.4.9] - 27/02/2026
+### Added
+- Dynamic ISSI → Brew attachment support.
+- Improved filtering to control which ISSIs are routed to Brew and which remain local.
+
+### Changed
+- Removed the `issi` field from the `[brew]` configuration section: leaving this field in place will prevent the application from starting.
+  
+## [0.4.8] - 26/02/2026
+### Added
+- Support for uplink second-slot stealing (low-level feature).
+- Receipt-based transmission tracking for CMCE/MM/SNDCP:
+  - Allows components to retain a receipt when sending a message.
+  - Enables verification that the message was transmitted over the air.
+  - Tracks whether the MS acknowledged reception.
+- Self-throttled D-SETUP repeats when MAC is heavily loaded (leveraging the new receipt mechanism).
+
+### Changed
+- Major configuration system rewrite.
+- Improvements and updates to the unit testing framework.
+
 ## [0.4.6] - 24/02/2026
 ### Added
 - Dynamic group attachment and detachment over Brew (no more hard-coded group configuration required).

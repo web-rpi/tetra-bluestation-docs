@@ -156,7 +156,6 @@ Optional Cell Parameters (Broadcast & Mobility)
 | `tls` | `true` | `true`, `false` | TLS is required (`wss://` / `https://`). |
 | `username` | _none_ | Integer | HTTP Digest auth username (required when enabled). For TPC: DMRID (plus optional SSID) |
 | `password` | _none_ | String | HTTP Digest auth password (required when enabled). For TPC: hotspot password |
-| `issi` | _none_ | Integer | ISSI used to register with the server. For TPC: DMRID |
 | `reconnect_delay_secs` | `15` | Integer (seconds) | Delay before reconnect attempts after disconnect. |
 | `jitter_initial_latency_frames` | `0` | Integer | Adds fixed startup latency (in frames) for inbound Brew jitter buffering. Adaptive buffering remains enabled. |
 | `whitelisted_ssis` | [91] | List of SSIs | Limits Brew transmission to listed SSIs only. If unset, all non-local SSIs are allowed over Brew. |
