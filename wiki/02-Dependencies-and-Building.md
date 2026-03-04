@@ -60,7 +60,7 @@ sudo ldconfig
 Check that the device is detected:
 ```bash
 ls -l /proc/device-tree/hat
-SoapySDRUtil --find
+SoapySDRUtil --probe=driver=sx
 ```
 
 
@@ -117,10 +117,10 @@ git clone https://github.com/MidnightBlueLabs/tetra-bluestation
 cd tetra-bluestation
 ```
 
-If you want to use another branch, replace `master`. 
+If you want to use another branch, replace `main`. 
 
 ```bash
-git checkout master
+git checkout main
 ```
 
 Build tetra-bluestation:
