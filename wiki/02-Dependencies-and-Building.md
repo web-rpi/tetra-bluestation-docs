@@ -32,7 +32,7 @@ sudo apt install -y --no-install-recommends \
   soapysdr-tools \
   libasound2-dev \
   clang llvm-dev libclang-dev \
-  libgpiod-dev \
+  libgpiod-dev
 ```
 
 Then, install Rust. Rustup is the easiest way to get the most up-to-date toolchain: 
@@ -61,6 +61,11 @@ Check that the device is detected:
 ```bash
 ls -l /proc/device-tree/hat
 SoapySDRUtil --probe=driver=sx
+```
+
+Don't forget to cd back into your home before continuing.
+```bash
+cd
 ```
 
 
@@ -109,7 +114,7 @@ You should see your USRP model listed on both commands. If not, verify USB/Ether
 
 
 ## Clone and build tetra-bluestation
-You can either build the upstream repository (which contains the latest stable features), or build a fork (which contain the latest experimental features).[[A list of forks is present in this page|10-Contributions,-forks-and-Issues]].
+You can either build the upstream repository (which contains the latest stable features), or build a fork.
 
 Clone the repository (replace by the URL of the fork if you're not using the upstream one):
 ```bash
