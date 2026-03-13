@@ -31,8 +31,7 @@ sudo apt install -y --no-install-recommends \
   libsoapysdr-dev \
   soapysdr-tools \
   libasound2-dev \
-  clang llvm-dev libclang-dev \
-  libgpiod-dev
+  clang llvm-dev libclang-dev
 ```
 
 Then, install Rust. Rustup is the easiest way to get the most up-to-date toolchain: 
@@ -42,8 +41,6 @@ curl https://sh.rustup.rs -sSf | sh
 ## Hardware-specific dependencies
 ### SxCeiver-related dependencies
 _Skip this section if you're not using the SxCeiver platform._
-
-You might need to downgrade libgpiod. [Dedicated guide coming soon, refer here for now.](https://github.com/web-rpi/tetra-bluestation/wiki/Installation-libgpiod)
 
 Clone and install SoapySX:
 ```bash
