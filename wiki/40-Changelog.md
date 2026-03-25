@@ -1,4 +1,9 @@
 # Changelog
+## [0.5.6] - 25/03/2026
+### Added
+- Running version is now printed on startup.
+### Changed
+- Revamped SDR device selection, now featuring automatic device detection.
 ## [0.5.5] - 25/03/2026
 ### Fixed
 - Resolved most LLC issues causing PTT denied behavior.

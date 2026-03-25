@@ -59,7 +59,7 @@ The configuration is split in multiple sections:
 | `ul_rx_file` | _disabled_ | String: File path | Dumps received uplink baseband samples to file (debug only). |
 
 
-## [phy_io.soapysdr]: SoapySDR Core Settings
+## [phy_io.soapysdr]: SoapySDR Settings
 
 | Parameter | Default / Example | Possible Values | Notes |
 |---------|-------------------|-----------------|-------|
@@ -67,71 +67,77 @@ The configuration is split in multiple sections:
 | `rx_freq` | `433025000` | Integer (Hz) | Uplink receive frequency. Must match duplex spacing and band rules. |
 | `ppm_err` | `0.0` | Float | Frequency correction for SDR oscillator error. |
 
-## [phy_io.soapysdr.iocfg_*]: Device-specific information
-Uncomment the SDR you're using, comment out any others. Only **one** `iocfg_*` subsection should be enabled at a time.
-### [phy_io.soapysdr.iocfg_limesdr]: LimeSDR
 
-| Parameter | Default / Example | Possible Values | Notes |
+### Custom device selection
+
+The optional `device` field may be used to override which device is used. If not specified, the first supported device found is selected automatically.
+You may need to specify this if you have multiple supported device connected, or if your device cannot be automatically detected by enumeration.
+
+For example, to use a Pluto+ with a given IP address:
+```
+device = "driver=plutosdr,uri=ip:192.168.42.42"
+```
+
+To select a LimeSDR with a given serial number (check with SoapySDRUtil --find):
+```
+device = "driver=lime,serial=123456789"
+```
+
+### Device-specific configuration
+If you want to change antenna selection or gain settings, device-specific fields must be added. 
+The names and valid ranges of those fields can be retrieved by using `SoapySDRUtil --probe` with the SDR connected. 
+Supported devices and their valid settings are listed below for convenience. 
+
+
+#### LimeSDR (+ Mini, Mini V2)
+
+| Parameter | Example | Possible Values | Notes |
 |---------|---------|-----------------|-------|
-| `rx_ant` | `"LNAL"` | `"LNAL"`, `"LNAH"`, `"LNAW"` | RX antenna port. Selection depends on the target frequency band. |
-| `tx_ant` | `"BAND1"` | `"BAND1"`, `"BAND2"` | TX antenna port. |
+| `rx_antenna` | `"LNAL"` | `"LNAL"`, `"LNAH"`, `"LNAW"` | RX antenna port. Selection depends on the target frequency band. |
+| `rx_antenna` **LimeSDR Mini V1/V2** | `"LNAW"` | `"LNAW"`, `"LNAH"` | RX antenna port. Selection depends on the target frequency band. |
+| `tx_antenna` | `"BAND1"` | `"BAND1"`, `"BAND2"` | TX antenna port. |
 | `rx_gain_lna` | `18.0` | Float (dB) | RX LNA gain stage. |
 | `rx_gain_tia` | `6.0` | Float (dB) | RX TIA gain stage. |
 | `rx_gain_pga` | `10.0` | Float (dB) | RX PGA gain stage. |
 | `tx_gain_pad` | `22.0` | Float (dB) | TX PAD gain stage. |
 | `tx_gain_iamp` | `3.0` | Float (dB) | TX IAMP gain stage. |
 
-### [phy_io.soapysdr.iocfg_limesdr]: LimeSDR Mini v2
 
-| Parameter | Default / Example | Possible Values | Notes |
+#### SXceiver
+
+| Parameter | Example | Possible Values | Notes |
 |---------|---------|-----------------|-------|
-| `rx_ant` | `"LNAW"` | `"LNAW"`, `"LNAH"` | RX antenna port. Selection depends on the target frequency band. |
-| `tx_ant` | `"BAND2"` | `"BAND1"`, `"BAND2"` | TX antenna port. |
-| `rx_gain_lna` | `18.0` | Float (dB) | RX LNA gain stage. |
-| `rx_gain_tia` | `6.0` | Float (dB) | RX TIA gain stage. |
-| `rx_gain_pga` | `10.0` | Float (dB) | RX PGA gain stage. |
-| `tx_gain_pad` | `22.0` | Float (dB) | TX PAD gain stage. |
-| `tx_gain_iamp` | `3.0` | Float (dB) | TX IAMP gain stage. |
-
-> Both models share the same `iocfg_limesdr` section key in `config.toml`. Only one should be active at a time.
-
-
-### [phy_io.soapysdr.iocfg_sxceiver]: SXceiver
-
-| Parameter | Default / Example | Possible Values | Notes |
-|---------|---------|-----------------|-------|
-| `rx_ant` | `"RX"` | `"RX"` | RX antenna port. |
-| `tx_ant` | `"TX"` | `"TX"` | TX antenna port. |
+| `rx_antenna` | `"RX"` | `"RX"` | RX antenna port. |
+| `tx_antenna` | `"TX"` | `"TX"` | TX antenna port. |
 | `rx_gain_lna` | `42.0` | Float (dB) | RX LNA gain stage. |
 | `rx_gain_pga` | `16.0` | Float (dB) | RX PGA gain stage. |
 | `tx_gain_dac` | `9.0` | Float (dB) | TX DAC gain stage. |
 | `tx_gain_mixer` | `30.0` | Float (dB) | TX mixer gain stage. |
 
-### [phy_io.soapysdr.iocfg_usrpb2xx]: Ettus USRP B200 / B210
 
-| Parameter | Default / Example | Possible Values | Notes |
+#### Ettus USRP B200 / B210
+
+| Parameter | Example | Possible Values | Notes |
 |---------|---------|-----------------|-------|
-| `rx_ant` | `"TX/RX"` | `"TX/RX"`, `"RX2"` | RX antenna port. |
-| `tx_ant` | `"TX/RX"` | `"TX/RX"` | TX antenna port. |
+| `rx_antenna` | `"TX/RX"` | `"TX/RX"`, `"RX2"` | RX antenna port. |
+| `tx_antenna` | `"TX/RX"` | `"TX/RX"` | TX antenna port. |
 | `rx_gain_pga` | `50.0` | Float (dB) | RX PGA gain stage. |
 | `tx_gain_pga` | `35.0` | Float (dB) | TX PGA gain stage. |
 
-### [phy_io.soapysdr.iocfg_pluto]: Adalm Pluto / Pluto+
+#### Adalm Pluto / Pluto+
 
-| Parameter | Default / Example | Possible Values | Notes |
+| Parameter | Example | Possible Values | Notes |
 |---------|---------|-----------------|-------|
-| `rx_ant` | `"A_BALANCED"` | `"A_BALANCED"`, `"A_N"`, `"A_P"` | RX antenna port. `"A_BALANCED"` recommended. |
-| `tx_ant` | `"A"` | `"A"` | TX antenna port. |
+| `rx_antenna` | `"A_BALANCED"` | `"A_BALANCED"`, `"A_N"`, `"A_P"` | RX antenna port. `"A_BALANCED"` recommended. |
+| `tx_antenna` | `"A"` | `"A"` | TX antenna port. |
 | `rx_gain_pga` | `20.0` | Float (dB) | RX PGA gain stage. |
 | `tx_gain_pga` | `89.0` | Float (dB) | TX PGA gain stage. |
-| `uri` | _disabled_ | String | Connection URI. **Do not set for the original Pluto.** Required for Pluto+ when selecting a specific interface. Examples: `"usb:1.3.5"`, `"ip:pluto.local"`, `"ip:192.168.42.42"` |
-| `direct` | `true` | `true`, `false` | Advanced driver parameter. Do not change unless you know what you are doing. |
-| `timestamp_every` | `1500` | Integer | Controls timestamping interval. Do not change unless you know what you are doing. |
-| `loopback` | `false` | `true`, `false` | Enables SDR loopback mode. Do not change unless you know what you are doing. |
 
 > **Firmware and driver requirements**
 >
 > The stock PlutoSDR firmware and SoapySDR driver do **not** support hardware timestamping, which is required by TETRA-bluestation. Before using this platform, follow the PlutoSDR setup procedure in the "Dependencies and Building" section.
+
+Please note that most original PlutoSDRs have a significant frequency error and either require a calibration (frequency error correction via the ppm_err parameter) or a TCXO mod.
 
 # [net_info]: Network Information
 
