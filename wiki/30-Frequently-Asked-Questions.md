@@ -24,11 +24,10 @@ Yes. TETRAPack is currently implemented via the Brew link protocol, but theoreti
 
 See the hardware compatibility table on the [[Requirements|01-Requirements]] page. The short rule: only SDRs with reliable **full-duplex hardware timestamping** are supported.
 
-
-### Is the PlutoSDR (or Pluto+, LibreSDR ZynqSDR, OpenSourceSDRLab 7010/7020) compatible?
-
-No, not at this time. These devices lack reliable hardware timestamping, which is a hard requirement for base station operation. This may change in the future — see [[Requirements|01-Requirements]] for details and a reference link.
-
+### Is the PlutoSDR (or Pluto+, LibreSDR, ZynqSDR, OpenSourceSDRLab 7010/7020) compatible?
+The PlutoSDR is now supported via a firmware mod that adds hardware timestamping. See the [[Dependencies and Building|02-Dependencies-and-Building]] section for details on how to apply it.
+ 
+Other devices in this family (Pluto+, LibreSDR, ZynqSDR, OpenSourceSDRLab 7010/7020) are not supported at this time. They require a firmware mod that enables reliable hardware timestamping, but no such mod has been identified for these devices yet. This may change in the future. See [[Requirements|01-Requirements]] for details and a reference link.
 
 ### Is the HackRF compatible?
 
@@ -47,7 +46,7 @@ If you want to create a more powerful base station to cover a larger area, pleas
 ### Can I run this on a Raspberry Pi?
 
 Yes — a Raspberry Pi 4 (2 GB) has been confirmed to work. See [[Requirements|01-Requirements]] for minimum specs and configuration tips (real-time scheduling, SD card speed, etc.). 
-You might be able to get away with lower-spec hardware, but as this software grows, expect the requirements to increase as well. 
+You might be able to get away with lower-spec hardware (some users have reported Bluestation running well on Pi3 and Zero 2W), but as this software grows, expect the requirements to increase as well. 
 
 BlueStation officialy aims to support Pi5, so if in the future the compute loads turns out to be too heavy, Pi4 support might have to be dropped.
 
@@ -98,6 +97,7 @@ It's the best place for quick questions, setup help, and general discussion.
 ### I think I've found a bug
 
 1. Check the [open issues](https://github.com/MidnightBlueLabs/tetra-bluestation/issues) to see if it's already reported.
-2. If not, open a new issue using the provided issue template in the repository and fill it out as completely as possible. Issues without enough detail are hard to act on and may be deferred.
+2. Make sure you are running the latest released build before opening an issue. The current build level is displayed when Bluestation starts.
+3. Open a new issue using the provided issue template in the repository and fill it out as completely as possible. Include the log file with your report. Issues without enough detail are hard to act on and may be deferred.
 
 See [[Contributions, Forks and Issues|10-Contributions,-forks-and-Issues]] for more on the contribution and issue process.

@@ -15,7 +15,6 @@ nano config.toml
 **TL;DR:** for proper operation, you must change the following values from default: 
 * `tx_freq` : match your desired Tx frequency
 * `rx_freq` : match your desired Rx frequency
-* Uncomment the relevant SDR platform you're using ([phy_io.soapysdr.iocfg_*]). Leave the default values for less headache. Comment out the ones you aren't using. 
 * Replace `mcc` and `mnc` with your network's values (examples: TETRAPACK uses MCC 901, MNC 9999. Tmo.services uses MCC 901, MNC 9998).
 * `main_carrier` : change value to match the Tx frequency downlink (see calculation procedure in the notes below). Edit `freq_offset` if needed.
 * `duplex_spacing` : if you want to use a custom duplex spacing, change this value to 7, uncomment `custom_duplex_spacing` and set the offset there. 
@@ -28,7 +27,7 @@ The configuration is split in multiple sections:
 * [phy_io]: PHY Layer configuration
 * [net_info]: Network Information
 * [cell_info]: Cell Information
-
+* [brew]: Interconnects (with Tetrapack or others)
 
 > ### Configuration Reminder
 >

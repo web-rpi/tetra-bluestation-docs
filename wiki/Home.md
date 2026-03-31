@@ -14,6 +14,8 @@ The following Wiki is structured as follows:
 * **Running TETRA-BlueStation**: lists the steps to start tetra-bluestation and how to improve execution
 * **Contributions, forks and issues**: explains the contribution policies, lists known forks and how to submit an issue
 * **Miscellaneous**: few aspects not tackled in the other chapters
+* **FAQ**: answers common questions on compatibility, troubleshooting, and issue reporting
+* **Changelog**: lists changes, fixes, and additions across released build levels
 
 For quick answers to common questions, see the [[Frequently Asked Questions|30-Frequently-Asked-Questions]] page.
 
@@ -49,7 +51,6 @@ Before doing anything else, make sure your setup meets the basic requirements:
 
 See the relevant hardware and SDR requirements section for details and known-good configurations.
 
----
 
 ### 2. Build the software
 
@@ -57,19 +58,15 @@ Install dependencies (general and those linked to the SDR hardware you're using)
 
 Follow the build instructions in the build and installation section to ensure all dependencies are correctly installed.
 
----
-
 ### 3. Edit the configuration file
 
 Start from the provided example configuration and adapt it to your setup:
-
-- Select the correct SDR hardware and device-specific settings  
+ 
 - Configure frequencies, band, and cell parameters consistently  
 - Verify network identifiers (MCC, MNC, etc.)  
 
 The configuration file reference explains each field in detail and should be consulted carefully.
 
----
 
 ### 4. Run the base station
 
